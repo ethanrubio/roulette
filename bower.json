@@ -1,0 +1,19 @@
+{
+  "name": "roulette",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Ethan Rubio"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ethanrubio/roulette",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

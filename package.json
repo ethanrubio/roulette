@@ -1,0 +1,23 @@
+{
+  "name": "roulette",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethanrubio/roulette.git"
+  },
+  "author": "Ethan Rubio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ethanrubio/roulette/issues"
+  },
+  "homepage": "https://github.com/ethanrubio/roulette#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": "^2.69.0"
+  }
+}
