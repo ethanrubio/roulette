@@ -1,3 +1,8 @@
 var app = require('./server/server.js');
 
-app.listen(process.env.PORT || 3468);
+var port = process.env.PORT || 3468;
+
+app.listen(port);
+
+
+console.log("Express server listening on %d in %s mode", port, app.settings.env);
