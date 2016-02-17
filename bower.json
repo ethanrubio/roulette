@@ -17,11 +17,10 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.0",
+    "angular": "^1.4.7",
     "angular-ui-router": "^0.2.18",
-    "jquery": "^2.2.0",
-    "gmaps": "gmaps.js#^0.4.22",
     "angular-materialize": "^0.1.2",
-    "socket.io-client": "^1.4.5"
+    "ngmap": "^1.16.7",
+    "angular-material": "^1.0.5"
   }
 }

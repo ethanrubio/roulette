@@ -2,50 +2,48 @@
 <html ng-app="pubroulette">
   <head>
     <meta charset="utf-8" />
-    <title>Pub Roulette: Spontaneous fun and adventure</title>
+    <title>Pub Roulette: Spontaneous Fun and Adventure</title>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
-    <link rel="stylesheet" type="text/css" href="styles/materialize/css/materialize.min.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
     <h1>Pub Roulette</h1>
-    <!-- navbar -->
-    <!-- <div class = 'navigation' ng-controller='AuthController'>
-      <ul ng-if="isAuth() === true">
-        <li><a href="#/links">Links</a></li>
-        <li><a href="#/shorten">Shorten</a></li>
-        <li><a href="#/logout" ng-click='signOut()'>Logout</a></li>
-      </ul>
-    </div> -->
 
-    <!-- load the app when getting geo location -->
-    <!-- <div class="progress">
-      <div class="indeterminate"></div>
-    </div> -->
+    <div class="loader" ng-controller='LoaderController'>
+      <ng-loading>
+    </div>
+
+    <div ng-controller="MapController">
+      <div ng-if="mapShow() === true;">
+          <ng-map-builder>
+      </div>
+    </div>
+
+    <div class="roulette md-padding" ng-controller="AppController">
+      <md-button class="md-raised md-primary" ng-click="success()" flex="100" flex-gt-md="auto">Roulette</md-button>
+    </div>
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
-    <div id="map"></div>
-
-    <div >
-      <button class="btn waves-effect waves-light" type="submit" name="action" method="GET">ROULETTE
-        <i class="material-icons right"></i>
-      </button>
-    </div>
 
     <div ui-view></div>
 
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="bower_components/gmaps/gmaps.js"></script>
-    <script src="styles/materialize/js/materialize.min.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js" ></script>
+    <script src="bower_components/angular-aria/angular-aria.js" ></script>
+    <script src="bower_components/angular-material/angular-material.js" ></script>
     <script src="app/app.js"></script>
     <script src="app/services/uberapifactory.js"></script>
     <script src="app/services/yelpapifactory.js"></script>
     <script src="app/services/mapfactory.js"></script>
+    <script src="app/map/mapController.js"></script>
+    <script src="app/loader/loader.js"></script>
 
   </body>
 </html>

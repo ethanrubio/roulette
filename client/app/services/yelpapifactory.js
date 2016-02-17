@@ -1,6 +1,17 @@
 angular.module('pubroulette.yelpapi', [])
 
 .factory("YelpAPI", function ($http) {
+
+  var clickedTruth;
+
+  var clicked = function(){
+    return clickedTruth;
+  };
+
+  var clickedFirst = function(){
+    clickedTruth = true;
+  };
+
   var passLocation = function(lat, long){
     return $http({
       method: 'POST',
@@ -15,5 +26,7 @@ angular.module('pubroulette.yelpapi', [])
 
   return {
     passLocation: passLocation,
+    clicked: clicked,
+    clickedFirst: clickedFirst
   };
 });

@@ -20,8 +20,10 @@ module.exports = {
 
     yelp.search({ term: 'bar', ll: latLongString })
     .then(function (data) {
-      console.log(data.businesses[0].location);
-      res.status(200).send(data.businesses[0]);
+      // randomize which bar you get!
+      var randomNumber = Math.floor(Math.random() * (20 - 0)) + 0;
+      /*console.log(data.businesses[0].location);*/
+      res.status(200).send(data.businesses[randomNumber]);
 
       // sample JSON from YELP !!!
       /*{ region:
@@ -74,5 +76,5 @@ module.exports = {
     console.log("i'm in the yelp controller - lat: ", lat);
     console.log("i'm in the yelp controller - long: ", long);
   }
-  
+
 };
