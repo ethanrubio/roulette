@@ -1,6 +1,6 @@
 angular.module('pubroulette.loader', [])
 
-.controller('LoaderController', function($scope, Map, YelpAPI) {
+.controller('LoaderController', ['$scope', 'Map', 'YelpAPI', function($scope, Map, YelpAPI) {
 
   $scope.mapShow = function() {
     var result = false;
@@ -16,12 +16,12 @@ angular.module('pubroulette.loader', [])
       result = true;
     }
     return result;
-  }
+  };
 
-})
+}])
 .directive('ngLoading', function() {
   return {
     restrict: 'E',
     template: "<md-progress-linear ng-if='mapShow() === false && clicked() === true' md-mode='indeterminate'></md-progress-linear>"
   };
-})
+});

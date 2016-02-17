@@ -1,6 +1,6 @@
 angular.module('pubroulette.yelpapi', [])
 
-.factory("YelpAPI", function ($http) {
+.factory("YelpAPI", ['$http', function ($http) {
 
   var clickedTruth;
 
@@ -29,4 +29,4 @@ angular.module('pubroulette.yelpapi', [])
     clicked: clicked,
     clickedFirst: clickedFirst
   };
-});
+}]);

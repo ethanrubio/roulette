@@ -1,5 +1,5 @@
 angular.module('pubroulette.mapMaker', [])
-.controller('MapController', function($scope, $log, $timeout, Map, UberAPI, $mdDialog){
+.controller('MapController', ['$scope', '$log', '$timeout', 'Map', 'UberAPI', '$mdDialog', function($scope, $log, $timeout, Map, UberAPI, $mdDialog){
 
   $scope.mapShow = function() {
     var result = false;
@@ -9,9 +9,9 @@ angular.module('pubroulette.mapMaker', [])
     return result;
   };
 
-  $scope.coordinates;
+  $scope.coordinates = {};
 
-  $scope.uberData;
+  $scope.uberData = {};
 
   $scope.$watch(function () { return Map.coordinates; }, function(newValue, oldValue) {
       if (newValue !== oldValue) {
@@ -63,10 +63,10 @@ angular.module('pubroulette.mapMaker', [])
   };
 
 
-})
+}])
 .directive('ngMapBuilder', function() {
   return {
     restrict: 'E',
     template: '<div style="width:70%  height: 100%"> <ng-map zoom="14" center="{{ coordinates.startLat + \',\' + coordinates.startLong }}" style="height:90%" > <directions travel-mode="DRIVING" origin=" {{ coordinates.startLat + \',\' + coordinates.startLong }}" destination="{{ coordinates.endLat + \',\' + coordinates.endLong }}"> </directions> </ng-map> </div>'
-  }
+  };
 });

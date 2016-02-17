@@ -1,6 +1,6 @@
 angular.module('pubroulette.map', [])
 
-.factory('Map', function($window){
+.factory('Map',['$window', function($window){
 
   var coordinates = {
 
@@ -37,4 +37,4 @@ angular.module('pubroulette.map', [])
     mapShow: mapShow
   };
 
-})
+}]);
