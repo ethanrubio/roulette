@@ -38,15 +38,38 @@ module.exports = {
     var scope = ['request'];
     res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3000/api/uber/callback?product_id=' + req.query.product_id
       + '&start_latitude=' + req.query.start_latitude + '&start_longitude=' + req.query.start_longitude
-      + '$end_longitude=' + req.query.end_longitude + '&end_latitude=' + req.query.end_longitude));
+      + '&end_longitude=' + req.query.end_longitude + '&end_latitude=' + req.query.end_latitude));
   },
 
   token: function(req, res) {
     uber.authorization({grantType: 'authorization_code', authorization_code: req.query.code}, function (err, access_token) {
 
+      var requestRide = {
+        product_id: req.query.product_id,
+        start_latitude: req.query.start_latitude,
+        start_longitude: req.query.start_longitude,
+        end_latitude: req.query.end_latitude,
+        end_longitude: req.query.end_longitude
+      };
+
       // token expires in 30 days -> store in future DB
-      uber.access_token = access_token;
-      res.send('Got an access token! Head to /book to initiate an ride request.');
+      var token = access_token;
+      module.exports.requestRide(requestRide, token, res);
+    });
+
+  },
+
+  requestRide: function(rideRequest, token, res) {
+    var requestUber = new Uber(options);
+    requestUber.access_token = token;
+    requestUber.requests.requestRide(rideRequest, function(err, result) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(result);
+        // close tab on success
+        res.send("<script>window.close();</script>");
+      }
     });
   }
 
