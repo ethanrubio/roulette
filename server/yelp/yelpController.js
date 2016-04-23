@@ -1,6 +1,6 @@
-var Q    = require('q'),
-    Yelp = require('yelp'),
-    keys = require('../util/config.js');
+var Q  = require('q');
+var Yelp = require('yelp');
+var keys = require('../util/config.js');
 
 var yelp = new Yelp({
   consumer_key: keys.yelp.consumer_key,
@@ -10,7 +10,7 @@ var yelp = new Yelp({
 });
 
 module.exports = {
-  search: function (req, res, next) {
+  search: function(req, res, next) {
     var lat = req.body.lat,
         long = req.body.long;
 
@@ -19,7 +19,7 @@ module.exports = {
    console.log(latLongString);
 
     yelp.search({ term: 'bar', ll: latLongString })
-    .then(function (data) {
+    .then(function(data) {
       // randomize which bar you get!
       var randomNumber = Math.floor(Math.random() * (20 - 0)) + 0;
       /*console.log(data.businesses[0].location);*/
