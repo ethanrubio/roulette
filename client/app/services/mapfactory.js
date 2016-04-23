@@ -12,7 +12,7 @@ angular.module('pubroulette.map', [])
 
   var mapTruth;
 
-  var mapShow = function(){
+  var mapShow = function() {
     return mapTruth;
   };
 
