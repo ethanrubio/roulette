@@ -1,17 +1,11 @@
 angular.module('pubroulette.map', [])
-
-.factory('Map', function($window){
+.factory('Map', function($window) {
 
   var coordinates = {
-
     startLat: '',
-
     startLong: '',
-
     endLat: '',
-
     endLong: '',
-
     name: '',
 
   };
@@ -37,4 +31,4 @@ angular.module('pubroulette.map', [])
     mapShow: mapShow
   };
 
-})
+});
