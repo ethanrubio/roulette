@@ -20,7 +20,6 @@ angular.module('pubroulette.uberapi', [])
       data: {startLat: startLat, startLong: startLong, endLat: endLat, endLong: endLong}
     })
     .then(function(resp) {
-      console.log(resp.data);
       uberData.data = resp.data;
       return resp;
     });
