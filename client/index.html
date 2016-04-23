@@ -22,8 +22,8 @@
       </div>
     </div>
 
-    <div class="roulette md-padding" ng-controller="AppController">
-      <md-button class="md-raised md-primary" ng-click="success()" flex="100" flex-gt-md="auto">Roulette</md-button>
+    <div class="roulette" ng-controller="RouletteController">
+      <ng-roulette>
     </div>
 
     <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
@@ -44,6 +44,7 @@
     <script src="app/services/mapfactory.js"></script>
     <script src="app/map/mapController.js"></script>
     <script src="app/loader/loader.js"></script>
+    <script src="app/roulette/roulette.js"></script>
 
   </body>
 </html>
