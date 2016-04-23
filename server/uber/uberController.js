@@ -6,8 +6,8 @@ var uber = new Uber({
   client_id: keys.uber.client_id,
   client_secret: keys.uber.client_secret,
   server_token: keys.uber.server_token,
-  redirect_uri: 'https://login.uber.com',
-  sandbox: keys.uber.sandbox,
+  redirect_uri: 'http://localhost:3468/callback',
+  sandbox: true,
   name: 'BAR_ROULETTE'
 });
 
@@ -31,6 +31,11 @@ module.exports = {
        res.status(200).send(response);
      }
    });
+  },
+
+  authenticate: function(req, res) {
+    var scope = ['request'];
+    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468/callback'));
   }
 
 };
