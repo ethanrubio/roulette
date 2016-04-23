@@ -11,6 +11,7 @@ angular.module('pubroulette', [
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
+
   $stateProvider
     .state('homepage', {
       url: '/',

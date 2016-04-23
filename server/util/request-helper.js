@@ -8,6 +8,7 @@ module.exports = function (app, express) {
   var uberRouter = express.Router();
   var yelpRouter = express.Router();
 
+  app.use(cors());
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());

@@ -1,8 +1,8 @@
 angular.module('pubroulette.mapMaker', [])
 .controller('MapController', ['$scope', '$log', '$timeout', 'Map', 'UberAPI', '$mdDialog', function($scope, $log, $timeout, Map, UberAPI, $mdDialog) {
-    
+
   $scope.coordinates;
-  $scope.uberData;  
+  $scope.uberData;
 
   $scope.mapShow = function() {
     var result = false;
@@ -35,6 +35,7 @@ angular.module('pubroulette.mapMaker', [])
           .cancel('Spin again.');
     $mdDialog.show(confirm).then(function() {
       $scope.status = 'You decided to go to collect your winnings!';
+      UberAPI.authenticate();
       $scope.showAlert();
     }, function() {
       $scope.status = 'You decided spin again.';
