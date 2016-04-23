@@ -4,12 +4,15 @@
     <meta charset="utf-8" />
     <title>Pub Roulette: Spontaneous Fun and Adventure</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/reset.css" />
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <h1 class="title">Pub Roulette</h1>
+    <div class="title">
+      <h1>Pub Roulette</h1>
+    </div>
 
     <div class="loader" ng-controller='LoaderController'>
       <ng-loading>
@@ -26,7 +29,10 @@
     </div>
 
     <div ui-view></div>
-
+    
+    <div class="footer">
+      <p>Made with &#10084; by <a href="https://github.com/ethanrubio"  target="_blank">Ethan</a></p>
+    </div>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
