@@ -7,21 +7,23 @@ var uber = new Uber({
   client_secret: keys.uber.client_secret,
   server_token: keys.uber.server_token,
   redirect_uri: 'https://login.uber.com',
+  sandbox: keys.uber.sandbox,
   name: 'BAR_ROULETTE'
 });
 
 module.exports = {
-  estimate: function (req, res, next) {
+  estimate: function(req, res, next) {
     var startLat = req.body.startLat;
     var startLong = req.body.startLong;
     var endLat = req.body.endLat;
     var endLong = req.body.endLong;
 
    uber.estimates.price({
-     start_latitude: startLat,
-     start_longitude: startLong,
-     end_latitude: endLat,
-     end_longitude: endLong }, function (error, response) {
+      start_latitude: startLat,
+      start_longitude: startLong,
+      end_latitude: endLat,
+      end_longitude: endLong
+    }, function(error, response) {
      if (error) {
        console.error(error);
      } else {
@@ -29,7 +31,6 @@ module.exports = {
        res.status(200).send(response);
      }
    });
-   
   }
 
 };
