@@ -1,5 +1,8 @@
 angular.module('pubroulette.mapMaker', [])
-.controller('MapController', function($scope, $log, $timeout, Map, UberAPI, $mdDialog){
+.controller('MapController', function($scope, $log, $timeout, Map, UberAPI, $mdDialog) {
+
+  $scope.coordinates;
+  $scope.uberData;  
 
   $scope.mapShow = function() {
     var result = false;
@@ -9,21 +12,14 @@ angular.module('pubroulette.mapMaker', [])
     return result;
   };
 
-  $scope.coordinates;
-
-  $scope.uberData;
-
-  $scope.$watch(function () { return Map.coordinates; }, function(newValue, oldValue) {
+  $scope.$watch(function() { return Map.coordinates; }, function(newValue, oldValue) {
       if (newValue !== oldValue) {
-        console.log("this is inside mapcontroller", newValue);
         $scope.coordinates = newValue;
       }
     }, true);
 
-  $scope.$watch(function () { return UberAPI.uberData; }, function(newValue, oldValue) {
-    console.log('Hi I\'m watching the uberData ', UberAPI.uberData);
+  $scope.$watch(function() { return UberAPI.uberData; }, function(newValue, oldValue) {
       if (newValue !== oldValue) {
-        console.log("this is inside mapcontroller for Uber ", newValue);
         $scope.uberData = newValue;
         $scope.showConfirm();
       }
@@ -47,21 +43,17 @@ angular.module('pubroulette.mapMaker', [])
   };
 
   $scope.showAlert = function(ev) {
-  // Appending dialog to document.body to cover sidenav in docs app
-  // Modal dialogs should fully cover application
-  // to prevent interaction outside of dialog
-  $mdDialog.show(
-    $mdDialog.alert()
-      .parent(angular.element(document.querySelector('#popupContainer')))
-      .clickOutsideToClose(true)
-      .title('Your uber is being hailed.')
-      .textContent('Have fun!')
-      .ariaLabel('Your uber is on it\'s way')
-      .ok('Thanks!')
-      .targetEvent(ev)
-    );
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('Your uber is being hailed.')
+        .textContent('Have fun!')
+        .ariaLabel('Your uber is on it\'s way')
+        .ok('Thanks!')
+        .targetEvent(ev)
+      );
   };
-
 
 })
 .directive('ngMapBuilder', function() {
