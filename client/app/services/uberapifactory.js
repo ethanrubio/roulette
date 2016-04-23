@@ -1,5 +1,5 @@
 angular.module('pubroulette.uberapi', [])
-.factory("UberAPI", function($http) {
+.factory('UberAPI', ['$http', function($http) {
 
   var uberData = {};
 
@@ -20,4 +20,4 @@ angular.module('pubroulette.uberapi', [])
     uberData: uberData
   };
   
-});
+}]);

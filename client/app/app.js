@@ -9,7 +9,7 @@ angular.module('pubroulette', [
   'pubroulette.roulette',
   'ui.router'
 ])
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
     .state('homepage', {
@@ -19,7 +19,7 @@ angular.module('pubroulette', [
 
     $urlRouterProvider.otherwise('/');
 
-})
-.controller('AppController', function($scope) {
+}])
+.controller('AppController', ['$scope', function($scope) {
 
-});
+}]);

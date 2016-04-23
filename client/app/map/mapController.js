@@ -1,5 +1,5 @@
 angular.module('pubroulette.mapMaker', [])
-.controller('MapController', function($scope, $log, $timeout, Map, UberAPI, $mdDialog) {
+.controller('MapController', ['$scope', '$log', '$timeout', 'Map', 'UberAPI', '$mdDialog', function($scope, $log, $timeout, Map, UberAPI, $mdDialog) {
 
   $scope.coordinates;
   $scope.uberData;  
@@ -55,7 +55,7 @@ angular.module('pubroulette.mapMaker', [])
       );
   };
 
-})
+}])
 .directive('ngMapBuilder', function() {
   return {
     restrict: 'E',

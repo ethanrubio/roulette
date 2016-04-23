@@ -1,6 +1,6 @@
 angular.module('pubroulette.roulette', [])
 
-.controller('RouletteController', function($scope, UberAPI, YelpAPI, Map, $mdDialog) {
+.controller('RouletteController', ['$scope', 'UberAPI', 'YelpAPI', 'Map', '$mdDialog', function($scope, UberAPI, YelpAPI, Map, $mdDialog) {
 
   $scope.roulette = function() {
     YelpAPI.clickedFirst();
@@ -39,7 +39,7 @@ angular.module('pubroulette.roulette', [])
     }
   };
 
-})
+}])
 .directive('ngRoulette', function() {
   return {
     restrict: 'E',

@@ -1,5 +1,5 @@
 angular.module('pubroulette.yelpapi', [])
-.factory("YelpAPI", function($http) {
+.factory("YelpAPI", ['$http', function($http) {
 
   var clickedTruth;
 
@@ -17,7 +17,7 @@ angular.module('pubroulette.yelpapi', [])
       url: '/api/yelp/location',
       data: {lat: lat, long: long}
     })
-    .then(function(resp){
+    .then(function(resp) {
       return resp;
     });
   };
@@ -28,4 +28,4 @@ angular.module('pubroulette.yelpapi', [])
     clickedFirst: clickedFirst
   };
   
-});
+}]);

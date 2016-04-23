@@ -1,6 +1,6 @@
 angular.module('pubroulette.loader', [])
 
-.controller('LoaderController', function($scope, Map, YelpAPI) {
+.controller('LoaderController', ['$scope', 'Map', 'YelpAPI', function($scope, Map, YelpAPI) {
 
   $scope.mapShow = function() {
     var result = false;
@@ -18,7 +18,7 @@ angular.module('pubroulette.loader', [])
     return result;
   }
 
-})
+}])
 .directive('ngLoading', function() {
   return {
     restrict: 'E',

@@ -1,5 +1,5 @@
 angular.module('pubroulette.map', [])
-.factory('Map', function($window) {
+.factory('Map', ['$window', function($window) {
 
   var coordinates = {
     startLat: '',
@@ -7,7 +7,6 @@ angular.module('pubroulette.map', [])
     endLat: '',
     endLong: '',
     name: '',
-
   };
 
   var mapTruth;
@@ -31,4 +30,4 @@ angular.module('pubroulette.map', [])
     mapShow: mapShow
   };
 
-});
+}]);
