@@ -26,7 +26,6 @@ angular.module('pubroulette.mapMaker', [])
     }, true);
 
   $scope.showConfirm = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
           .title('You\'re about to go to ' + $scope.coordinates.name +  '.')
           .textContent('It\'ll cost about ' + $scope.uberData.data.prices[0].estimate + '.')
