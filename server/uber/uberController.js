@@ -13,7 +13,7 @@ var options = {
 var uber = new Uber(options);
 
 module.exports = {
-  estimate: function(req, res, next) {
+  estimate: function(req, res) {
     var startLat = req.body.startLat;
     var startLong = req.body.startLong;
     var endLat = req.body.endLat;

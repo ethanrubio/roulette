@@ -10,11 +10,10 @@ var yelp = new Yelp({
 });
 
 module.exports = {
-  search: function(req, res, next) {
+  search: function(req, res) {
     var lat = req.body.lat;
     var long = req.body.long;
-
-   var latLongString = lat + ',' + long;
+    var latLongString = lat + ',' + long;
 
     yelp.search({ term: 'bar', ll: latLongString })
     .then(function(data) {
@@ -23,10 +22,10 @@ module.exports = {
 
       res.status(200).send(data.businesses[randomNumber]);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       console.error(err);
     });
-    
+
   }
 
 };
