@@ -1,6 +1,6 @@
 angular.module('pubroulette.mapMaker', [])
 .controller('MapController', ['$scope', '$log', '$timeout', 'Map', 'UberAPI', '$mdDialog', function($scope, $log, $timeout, Map, UberAPI, $mdDialog) {
-
+    
   $scope.coordinates;
   $scope.uberData;  
 
