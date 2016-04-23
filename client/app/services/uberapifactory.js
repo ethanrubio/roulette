@@ -1,8 +1,10 @@
 angular.module('pubroulette.uberapi', [])
-.factory('UberAPI', ['$http', function($http) {
+.factory('UberAPI', ['$http', '$window', function($http, $window) {
+
+  $http.defaults.useXDomain = true;
 
   var uberData = {};
-  var uberAuthorize;
+  var uberAuthenticate;
 
   var passLocation = function(startLat, startLong, endLat, endLong) {
     return $http({
@@ -16,21 +18,16 @@ angular.module('pubroulette.uberapi', [])
     });
   };
 
-  var authorize = function() {
-    return $http({
-      method: 'GET',
-      url: '/api/uber/authorize'
-    })
-    .then(function(resp) {
-      uberAuthorize = resp;
-      console.log(uberAuthorize);
-    })
+  var authenticate = function() {
+
+    $window.open('http://localhost:3000/api/uber/authenticate', '_blank');
+
   }
 
   return {
     passLocation: passLocation,
     uberData: uberData,
-    uberAuthorize: uberAuthorize
+    authenticate: authenticate
   };
 
 }]);
