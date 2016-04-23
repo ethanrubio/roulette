@@ -29,7 +29,8 @@ angular.module('pubroulette.uberapi', [])
 
   return {
     passLocation: passLocation,
-    uberData: uberData
+    uberData: uberData,
+    uberAuthorize: uberAuthorize
   };
 
 }]);
