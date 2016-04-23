@@ -2,14 +2,15 @@ var Q = require('q');
 var Uber = require('node-uber');
 var keys = require('../util/config.js');
 
-var uber = new Uber({
+var options = {
+  sandbox: true,
   client_id: keys.uber.client_id,
   client_secret: keys.uber.client_secret,
   server_token: keys.uber.server_token,
-  redirect_uri: 'http://localhost:3468/callback',
-  sandbox: true,
-  name: 'BAR_ROULETTE'
-});
+  redirect_uri: 'http://localhost:3000/callback'
+};
+
+var uber = new Uber(options);
 
 module.exports = {
   estimate: function(req, res, next) {
@@ -35,7 +36,7 @@ module.exports = {
 
   authenticate: function(req, res) {
     var scope = ['request'];
-    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468/callback'));
+    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3000/callback'));
   }
 
 };
