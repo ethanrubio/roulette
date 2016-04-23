@@ -42,7 +42,7 @@ module.exports = {
   },
 
   token: function(req, res) {
-    uber.authorization({grantType: 'authorization_code', authorization_code: req.query.code}, function (err, access_token) {
+    uber.authorization({grantType: 'authorization_code', authorization_code: req.query.code}, function(err, access_token) {
 
       var requestRide = {
         product_id: req.query.product_id,
@@ -67,8 +67,13 @@ module.exports = {
         console.error(err);
       } else {
         console.log(result);
-        // close tab on success
-        res.send("<script>window.close();</script>");
+        var result = result;
+        if (result.status === 'processing') {
+          var requestStatus = result.request_id;
+          res.status(200).send("<script>window.close();</script>");
+        } else if (result.message === 'Invalid Request' || result.code === 'validation_failed') {
+          res.status(400).send('wrong request');
+        }
       }
     });
   }
