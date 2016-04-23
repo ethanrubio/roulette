@@ -19,4 +19,4 @@ Bootstraps express server.
 
 `npm run build`
 
-Runs a grunt to compile to the dist folder in client.
+Runs Grunt to compile to the dist folder in client.
