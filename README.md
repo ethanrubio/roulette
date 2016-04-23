@@ -2,6 +2,11 @@
 
 A simple app to take you to a random bar near you using Uber.
 
+## Future Features
+
+* Adding Uber authentication for login
+* Adding the functionality for hailing an Uber to a user's current location
+
 ## Getting started
 
 ```
