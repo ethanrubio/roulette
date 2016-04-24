@@ -91,7 +91,7 @@ module.exports = {
                     res.status(400);
                   }
                   console.log('sending user ', user);
-                  res.status(200).send({token: user});
+                  res.status(200).send({token: token});
                 });
               }
             });            
@@ -102,6 +102,7 @@ module.exports = {
   },
 
   requestRide: function(req, res) {
+    console.log(req.body);
     var requestRide = {
       product_id: req.body.product_id,
       start_latitude: req.body.start_latitude,
@@ -111,11 +112,11 @@ module.exports = {
     };    
     var requestUber = new Uber(options);
     
-    requestUber.access_token = req.body.token;
-    requestUber.requests.requestRide(rideRequest, function(err, result) {
+    requestUber.access_token = req.body.access_token;
+    requestUber.requests.requestRide(requestRide, function(err, result) {
       if (err) {
         console.error(err);
-        res.satus(400).send({
+        res.status(400).send({
           'error': 'ride request could not be completed',
           'uberError': err
         });
@@ -124,7 +125,7 @@ module.exports = {
         var result = result;
         if (result.status === 'processing') {
           var requestStatus = result.request_id;
-          res.status(200).send("<script>window.close();</script>");
+          res.status(200).send(result);
         } else if (result.message === 'Invalid Request' || result.code === 'validation_failed') {
           res.status(400).send({
             'error': 'wrong request',
