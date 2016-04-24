@@ -35,8 +35,13 @@ angular.module('pubroulette.mapMaker', [])
           .cancel('Spin again.');
     $mdDialog.show(confirm).then(function() {
       $scope.status = 'You decided to go to collect your winnings!';
-      UberAPI.authenticate();
-      $scope.showAlert();
+      UberAPI.requestRide()
+      .then(function(data) {
+        $scope.showAlert();
+      })
+      .catch(function(error) {
+        console.error(error)
+      });
     }, function() {
       $scope.status = 'You decided spin again.';
     });
