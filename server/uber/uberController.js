@@ -1,4 +1,3 @@
-var Q = require('q');
 var Uber = require('node-uber');
 var keys = require('../util/config');
 var User = require('../models/userModel');
