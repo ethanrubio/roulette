@@ -35,14 +35,16 @@ module.exports = {
   },
 
   authenticate: function(req, res) {
-    var scope = ['request'];
+    var scope = ['profile'];
     res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468/api/uber/callback?product_id=' + req.query.product_id
       + '&start_latitude=' + req.query.start_latitude + '&start_longitude=' + req.query.start_longitude
       + '&end_longitude=' + req.query.end_longitude + '&end_latitude=' + req.query.end_latitude));
   },
 
-  token: function(req, res) {
+  getToken: function(req, res) {
     uber.authorization({grantType: 'authorization_code', authorization_code: req.query.code}, function(err, access_token) {
+      
+      console.log(access_token);
 
       var requestRide = {
         product_id: req.query.product_id,
@@ -54,9 +56,24 @@ module.exports = {
 
       // token expires in 30 days -> store in future DB
       var token = access_token;
-      module.exports.requestRide(requestRide, token, res);
+      module.exports.getProfile(token, res);
+      // module.exports.requestRide(requestRide, token, res);
     });
 
+  },
+  
+  getProfile: function(token, res) {
+    if (!token || token === '') {
+      res.status(401);
+    } else {
+      uber.user.profile(token, function(err, result) {
+        if (err) {
+          console.error(err);
+          res.status(400);
+        }
+        console.log(result);
+      });
+    }
   },
 
   requestRide: function(rideRequest, token, res) {
