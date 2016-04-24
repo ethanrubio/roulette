@@ -1,14 +1,11 @@
 angular.module('pubroulette.uberapi', [])
-.factory('UberAPI', ['$http', '$window', function($http, $window) {
-
-  $http.defaults.useXDomain = true;
+.factory('UberAPI', ['$http', function($http) {
 
   var uberData = {};
   var coordinates = {};
-  var uberAuthenticate;
+  var rideData = {};
 
   var passLocation = function(startLat, startLong, endLat, endLong) {
-
     coordinates.start_longitude = startLong;
     coordinates.start_latitude = startLat;
     coordinates.end_longitude = endLong;
@@ -24,21 +21,35 @@ angular.module('pubroulette.uberapi', [])
       return resp;
     });
   };
-
-  var authenticate = function() {
+  
+  var requestRide = function(token) {
     var uberX = uberData.data.prices[0].product_id;
-
-    $window.open('http://localhost:3468/api/uber/authenticate?product_id=' + uberX
-      + '&start_longitude=' + coordinates.start_longitude
-      + '&start_latitude=' + coordinates.start_latitude
-      + '&end_longitude=' + coordinates.end_longitude
-      + '&end_latitude=' + coordinates.end_latitude, '_blank');
+    var dataToSend = {
+      product_id: uberX,
+      start_longitude: coordinates.start_longitude,
+      start_latitude: coordinates.start_latitude,
+      end_longitude: coordinates.end_longitude,
+      end_latitude: coordinates.end_latitude,
+      access_token: token
+    };
+    
+    return $http({
+      method: 'POST',
+      url: '/api/uber/requestride',
+      data: dataToSend
+    })
+    .then(function(resp) {
+      rideData = resp.data;
+      console.log(resp);
+      return resp;
+    });
   };
 
   return {
     passLocation: passLocation,
     uberData: uberData,
-    authenticate: authenticate
+    authenticate: authenticate,
+    requestRide: requestRide
   };
 
 }]);
