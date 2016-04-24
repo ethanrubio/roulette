@@ -22,7 +22,9 @@ angular.module('pubroulette.uberapi', [])
     });
   };
   
-  var requestRide = function(token) {
+  var requestRide = function() {
+    var token = localStorage['satellizer_token'];
+    console.log('this is the token', token);
     var uberX = uberData.data.prices[0].product_id;
     var dataToSend = {
       product_id: uberX,
@@ -33,9 +35,11 @@ angular.module('pubroulette.uberapi', [])
       access_token: token
     };
     
+    console.log('this is the data to send ', dataToSend);
+    
     return $http({
       method: 'POST',
-      url: '/api/uber/requestride',
+      url: '/api/uber/riderequest',
       data: dataToSend
     })
     .then(function(resp) {
@@ -48,7 +52,6 @@ angular.module('pubroulette.uberapi', [])
   return {
     passLocation: passLocation,
     uberData: uberData,
-    authenticate: authenticate,
     requestRide: requestRide
   };
 
