@@ -1,6 +1,5 @@
-var Q  = require('q');
 var Yelp = require('yelp');
-var keys = require('../util/config.js');
+var keys = require('../util/config');
 
 var yelp = new Yelp({
   consumer_key: keys.yelp.consumer_key,

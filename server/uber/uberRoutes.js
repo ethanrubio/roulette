@@ -1,4 +1,4 @@
-var uberController = require('./uberController.js');
+var uberController = require('./uberController');
 
 module.exports = function(app) {
 

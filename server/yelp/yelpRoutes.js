@@ -1,4 +1,4 @@
-var yelpController = require('./yelpController.js');
+var yelpController = require('./yelpController');
 
 module.exports = function (app) {
 
