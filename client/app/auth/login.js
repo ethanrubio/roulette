@@ -13,11 +13,10 @@ angular.module('pubroulette.auth', [])
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider)
       .then(function(data) {
-        console.log(data);
-        console.log('logged in??');
+
       })
       .catch(function(error) {
-        console.log('there has been an error! ', error);
+        console.error('there has been an error! ', error);
       });
   };
 

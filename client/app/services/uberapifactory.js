@@ -24,7 +24,6 @@ angular.module('pubroulette.uberapi', [])
   
   var requestRide = function() {
     var token = localStorage['satellizer_token'];
-    console.log('this is the token', token);
     var uberX = uberData.data.prices[0].product_id;
     var dataToSend = {
       product_id: uberX,
@@ -34,9 +33,7 @@ angular.module('pubroulette.uberapi', [])
       end_latitude: coordinates.end_latitude,
       access_token: token
     };
-    
-    console.log('this is the data to send ', dataToSend);
-    
+        
     return $http({
       method: 'POST',
       url: '/api/uber/riderequest',

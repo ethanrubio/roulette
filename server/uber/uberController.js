@@ -90,7 +90,6 @@ module.exports = {
                     console.error(err);
                     res.status(400);
                   }
-                  console.log('sending user ', user);
                   res.status(200).send({token: token});
                 });
               }
@@ -102,7 +101,6 @@ module.exports = {
   },
 
   requestRide: function(req, res) {
-    console.log(req.body);
     var requestRide = {
       product_id: req.body.product_id,
       start_latitude: req.body.start_latitude,
