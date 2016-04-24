@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-.roulette {
+.roulette, .auth {
   display: flex;
   justify-content: center; 
 }

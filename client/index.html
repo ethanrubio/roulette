@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles/reset.css" />
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
     <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/Ionicons/css/ionicons.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
@@ -25,7 +26,15 @@
     </div>
 
     <div class="roulette" ng-controller="RouletteController">
-      <ng-roulette>
+      <div ng-if="checkAuth() === true;">
+        <ng-roulette>
+      </div>
+    </div>
+    
+    <div class="auth" ng-controller='AuthController'>
+      <div ng-if="checkAuth() === false;">
+        <ng-uber-auth>
+      </div>
     </div>
 
     <div ui-view></div>
@@ -41,13 +50,15 @@
     <script src="bower_components/angular-animate/angular-animate.js" ></script>
     <script src="bower_components/angular-aria/angular-aria.js" ></script>
     <script src="bower_components/angular-material/angular-material.js" ></script>
+    <script src="bower_components/satellizer/satellizer.min.js"></script>
     <!--<script src="app/app.js"></script>
     <script src="app/services/uberapifactory.js"></script>
     <script src="app/services/yelpapifactory.js"></script>
     <script src="app/services/mapfactory.js"></script>
-    <script src="app/map/mapController.js"></script>
+    <script src="app/map/map.js"></script>
     <script src="app/loader/loader.js"></script>
-    <script src="app/roulette/roulette.js"></script>-->
+    <script src="app/roulette/roulette.js"></script>
+    <script src-"app/auth/auth.js"></script>-->
     <script src="dist/app.min.js"></script>
   </body>
 </html>
