@@ -11,3 +11,5 @@ var userSchema = new mongoose.Schema({
     promo_code: String,
     access_token: String
 });
+
+module.exports = mongoose.model('User', userSchema);
