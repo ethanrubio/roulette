@@ -24,12 +24,16 @@ module.exports = {
       start_longitude: startLong,
       end_latitude: endLat,
       end_longitude: endLong
-    }, function(error, response) {
-     if (error) {
-       console.error(error);
+    }, function(err, result) {
+     if (err) {
+       console.error(err);
+       res.status(400).send({
+         'error': 'price estimate could not be completed',
+         'uberError': err
+       });
      } else {
-       console.log(response);
-       res.status(200).send(response);
+       console.log(result);
+       res.status(200).send(result);
      }
    });
   },
