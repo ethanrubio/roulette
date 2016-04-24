@@ -5,4 +5,5 @@ module.exports = function(app) {
   app.post('/journey', uberController.estimate);
   app.get('/authenticate', uberController.authenticate);
   app.post('/token', uberController.getToken);
+  app.post('/riderequest', uberController.requestRide);
 };
