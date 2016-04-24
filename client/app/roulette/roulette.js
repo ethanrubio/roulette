@@ -1,6 +1,14 @@
 angular.module('pubroulette.roulette', [])
 
-.controller('RouletteController', ['$scope', 'UberAPI', 'YelpAPI', 'Map', '$mdDialog', function($scope, UberAPI, YelpAPI, Map, $mdDialog) {
+.controller('RouletteController', ['$scope', 'UberAPI', 'YelpAPI', 'Map', '$mdDialog', '$auth', function($scope, UberAPI, YelpAPI, Map, $mdDialog, $auth) {
+  
+  $scope.checkAuth = function() {
+    var result = false;
+    if ($auth.isAuthenticated()) {
+      result = true;
+    }
+    return result;
+  }
 
   $scope.roulette = function() {
     YelpAPI.clickedFirst();
