@@ -30,5 +30,4 @@ angular.module('pubroulette', [
     $urlRouterProvider.otherwise('/');
 
 }])
-.controller('AppController', ['$scope', function($scope) {
-}]);
+.controller('AppController', ['$scope', function($scope) {}]);
