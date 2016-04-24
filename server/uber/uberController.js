@@ -1,6 +1,7 @@
 var Q = require('q');
 var Uber = require('node-uber');
-var keys = require('../util/config.js');
+var keys = require('../util/config');
+var User = require('../models/userModel');
 
 var options = {
   sandbox: true,
@@ -39,7 +40,7 @@ module.exports = {
   },
 
   authenticate: function(req, res) {
-    var scope = ['profile'];
+    var scope = ['profile', 'request'];
     res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468/api/uber/callback?product_id=' + req.query.product_id
       + '&start_latitude=' + req.query.start_latitude + '&start_longitude=' + req.query.start_longitude
       + '&end_longitude=' + req.query.end_longitude + '&end_latitude=' + req.query.end_latitude));
@@ -74,8 +75,44 @@ module.exports = {
         if (err) {
           console.error(err);
           res.status(400);
+        } else {
+          if (result.uuid) {
+            User.findOne({uid: result.uuid}), function(err, user) {
+              if (err) {
+                var newUser = new User({
+                  picture: result.profile,
+                  first_name: result.first_name,
+                  last_name: result.last_name,
+                  uuid: result.uuid,
+                  rider_id: resuilt.id,
+                  email: result.email,
+                  mobile_verified: result.mobile_verified,
+                  promo_code: result.promo_code,
+                  access_token: token                  
+                });
+                
+                newUser.save(function(err) {
+                  if (err) {
+                    console.error('user creation failed');
+                    res.status(400).send({
+                      'error': 'there was an error creating your user',
+                      'mongooseError': err
+                    });
+                  }
+                  res.status(200);
+                });
+              } else {
+                user.update({access_token: token}, function(err, raw) {
+                  if (err) {
+                    console.error(err);
+                    res.status(400);
+                  }
+                  res.send(200);
+                });
+              }
+            }            
+          }
         }
-        console.log(result);
       });
     }
   },
