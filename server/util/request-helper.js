@@ -4,7 +4,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-module.exports = function (app, express) {
+module.exports = function(app, express) {
   var uberRouter = express.Router();
   var yelpRouter = express.Router();
 
