@@ -8,7 +8,7 @@ var options = {
   client_id: keys.uber.client_id,
   client_secret: keys.uber.client_secret,
   server_token: keys.uber.server_token,
-  redirect_uri: 'http://localhost:3468/api/uber/callback'
+  redirect_uri: 'http://localhost:3468'
 };
 
 var uber = new Uber(options);
@@ -41,30 +41,14 @@ module.exports = {
 
   authenticate: function(req, res) {
     var scope = ['profile', 'request'];
-    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468/api/uber/callback?product_id=' + req.query.product_id
-      + '&start_latitude=' + req.query.start_latitude + '&start_longitude=' + req.query.start_longitude
-      + '&end_longitude=' + req.query.end_longitude + '&end_latitude=' + req.query.end_latitude));
+    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468'));
   },
 
   getToken: function(req, res) {
-    uber.authorization({grantType: 'authorization_code', authorization_code: req.query.code}, function(err, access_token) {
-      
-      console.log(access_token);
-
-      var requestRide = {
-        product_id: req.query.product_id,
-        start_latitude: req.query.start_latitude,
-        start_longitude: req.query.start_longitude,
-        end_latitude: req.query.end_latitude,
-        end_longitude: req.query.end_longitude
-      };
-
-      // token expires in 30 days -> store in future DB
-      var token = access_token;
-      module.exports.getProfile(token, res);
-      // module.exports.requestRide(requestRide, token, res);
+    var auth_code = req.body.code;
+    uber.authorization({grantType: 'authorization_code', authorization_code: auth_code}, function(err, access_token) {
+      module.exports.getProfile(access_token, res);
     });
-
   },
   
   getProfile: function(token, res) {
@@ -77,20 +61,20 @@ module.exports = {
           res.status(400);
         } else {
           if (result.uuid) {
-            User.findOne({uid: result.uuid}), function(err, user) {
+            User.findOne({uuid: result.uuid}, function(err, user) {
               if (err) {
                 var newUser = new User({
-                  picture: result.profile,
+                  picture: result.picture,
                   first_name: result.first_name,
                   last_name: result.last_name,
                   uuid: result.uuid,
-                  rider_id: resuilt.id,
+                  rider_id: result.rider_id,
                   email: result.email,
                   mobile_verified: result.mobile_verified,
                   promo_code: result.promo_code,
                   access_token: token                  
                 });
-                
+                                
                 newUser.save(function(err) {
                   if (err) {
                     console.error('user creation failed');
@@ -99,7 +83,7 @@ module.exports = {
                       'mongooseError': err
                     });
                   }
-                  res.status(200);
+                  res.status(200).send({token: newUser});
                 });
               } else {
                 user.update({access_token: token}, function(err, raw) {
@@ -107,10 +91,11 @@ module.exports = {
                     console.error(err);
                     res.status(400);
                   }
-                  res.send(200);
+                  console.log('sending user ', user);
+                  res.status(200).send({token: user});
                 });
               }
-            }            
+            });            
           }
         }
       });
