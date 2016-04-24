@@ -7,7 +7,7 @@ var options = {
   client_id: keys.uber.client_id,
   client_secret: keys.uber.client_secret,
   server_token: keys.uber.server_token,
-  redirect_uri: 'http://localhost:3000/api/uber/callback'
+  redirect_uri: 'http://localhost:3468/api/uber/callback'
 };
 
 var uber = new Uber(options);
@@ -36,7 +36,7 @@ module.exports = {
 
   authenticate: function(req, res) {
     var scope = ['request'];
-    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3000/api/uber/callback?product_id=' + req.query.product_id
+    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468/api/uber/callback?product_id=' + req.query.product_id
       + '&start_latitude=' + req.query.start_latitude + '&start_longitude=' + req.query.start_longitude
       + '&end_longitude=' + req.query.end_longitude + '&end_latitude=' + req.query.end_latitude));
   },

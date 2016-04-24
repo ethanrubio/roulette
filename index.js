@@ -1,7 +1,7 @@
 var app = require('./server/server.js');
 
-var port = 3000;
+var port = 3468;
 
 app.listen(port);
 
-console.log("Express server listening on %d in %s mode", port);
+console.log("Express server listening on %d", port);

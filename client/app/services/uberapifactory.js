@@ -28,7 +28,7 @@ angular.module('pubroulette.uberapi', [])
   var authenticate = function() {
     var uberX = uberData.data.prices[0].product_id;
 
-    $window.open('http://localhost:3000/api/uber/authenticate?product_id=' + uberX
+    $window.open('http://localhost:3468/api/uber/authenticate?product_id=' + uberX
       + '&start_longitude=' + coordinates.start_longitude
       + '&start_latitude=' + coordinates.start_latitude
       + '&end_longitude=' + coordinates.end_longitude
