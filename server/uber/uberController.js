@@ -76,12 +76,24 @@ module.exports = {
     }
   },
 
-  requestRide: function(rideRequest, token, res) {
+  requestRide: function(req, res) {
+    var requestRide = {
+      product_id: req.body.product_id,
+      start_latitude: req.body.start_latitude,
+      start_longitude: req.body.start_longitude,
+      end_latitude: req.body.end_latitude,
+      end_longitude: req.body.end_longitude
+    };    
     var requestUber = new Uber(options);
-    requestUber.access_token = token;
+    
+    requestUber.access_token = req.body.token;
     requestUber.requests.requestRide(rideRequest, function(err, result) {
       if (err) {
         console.error(err);
+        res.satus(400).send({
+          'error': 'ride request could not be completed',
+          'uberError': err
+        });
       } else {
         console.log(result);
         var result = result;
@@ -89,7 +101,10 @@ module.exports = {
           var requestStatus = result.request_id;
           res.status(200).send("<script>window.close();</script>");
         } else if (result.message === 'Invalid Request' || result.code === 'validation_failed') {
-          res.status(400).send('wrong request');
+          res.status(400).send({
+            'error': 'wrong request',
+            'uberError': result
+          });
         }
       }
     });
