@@ -10,7 +10,8 @@ var options = {
   client_id: keys.uber.client_id,
   client_secret: keys.uber.client_secret,
   server_token: keys.uber.server_token,
-  redirect_uri: 'http://localhost:3468'
+  redirect_uri: 'http://localhost:3468',
+  name: 'PUB_ROULETTE'
 };
 
 var uber = new Uber(options);
@@ -42,7 +43,7 @@ module.exports = {
   },
 
   authenticate: function(req, res) {
-    var scope = ['profile', 'request'];
+    var scope = ['profile', 'request', 'history'];
     res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468'));
   },
 
@@ -74,7 +75,7 @@ module.exports = {
                   email: result.email,
                   mobile_verified: result.mobile_verified,
                   promo_code: result.promo_code,
-                  access_token: access_token                  
+                  access_token: access_token
                 });
                                 
                 newUser.save(function(err) {
@@ -89,11 +90,15 @@ module.exports = {
                   res.status(200).send({token: token});
                 });
               } else {
-                user.update({access_token: access_token}, function(err, raw) {
+                user.update({
+                  access_token: access_token
+                }, function(err, raw) {
                   if (err) {
                     console.error(err);
                     res.status(400);
                   }
+                  // update doesn't return model with updated info
+                  user.access_token = access_token;
                   var token = jwt.encode(user, secret);
                   res.status(200).send({token: token});
                 });
@@ -113,10 +118,9 @@ module.exports = {
       end_latitude: req.body.end_latitude,
       end_longitude: req.body.end_longitude
     };    
-    var requestUber = new Uber(options);
-    
-    requestUber.access_token = req.body.access_token;
-    requestUber.requests.requestRide(requestRide, function(err, result) {
+   
+    uber.access_token = req.body.access_token;
+    uber.requests.requestRide(requestRide, function(err, result) {
       if (err) {
         console.error(err);
         res.status(400).send({
@@ -124,7 +128,6 @@ module.exports = {
           'uberError': err
         });
       } else {
-        console.log(result);
         var result = result;
         if (result.status === 'processing') {
           var requestStatus = result.request_id;
@@ -136,7 +139,7 @@ module.exports = {
           });
         }
       }
-    });
+    });      
   }
 
 };
