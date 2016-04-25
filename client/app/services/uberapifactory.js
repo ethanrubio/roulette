@@ -1,5 +1,5 @@
 angular.module('pubroulette.uberapi', [])
-.factory('UberAPI', ['$http', function($http) {
+.factory('UberAPI', ['$http', 'jwtHelper', function($http, jwtHelper) {
 
   var uberData = {};
   var coordinates = {};
@@ -23,7 +23,7 @@ angular.module('pubroulette.uberapi', [])
   };
   
   var requestRide = function() {
-    var token = localStorage['satellizer_token'];
+    var token = jwtHelper.decodeToken(localStorage['satellizer_token']);
     var uberX = uberData.data.prices[0].product_id;
     var dataToSend = {
       product_id: uberX,
@@ -31,7 +31,7 @@ angular.module('pubroulette.uberapi', [])
       start_latitude: coordinates.start_latitude,
       end_longitude: coordinates.end_longitude,
       end_latitude: coordinates.end_latitude,
-      access_token: token
+      access_token: token.access_token
     };
         
     return $http({
