@@ -7,7 +7,8 @@ angular.module('pubroulette', [
   'pubroulette.mapMaker',
   'pubroulette.loader',
   'pubroulette.roulette',
-  'pubroulette.auth',
+  'pubroulette.login',
+  'pubroulette.logout',
   'ui.router',
   'satellizer'
 ])

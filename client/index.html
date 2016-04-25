@@ -11,11 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <div class="title">
-      <h1>Pub Roulette</h1>
+    <div class="header">
+      <div class="header_section">
+        <h1>Pub Roulette</h1>
+      </div>
+      <div class="header_section" ng-controller="LogoutController">
+        <div ng-if="checkAuth() === true;">
+          <ng-logout>
+        </div>
+      </div>
     </div>
 
-    <div class="loader" ng-controller='LoaderController'>
+    <div class="loader" ng-controller="LoaderController">
       <ng-loading>
     </div>
 
@@ -31,7 +38,7 @@
       </div>
     </div>
     
-    <div class="auth" ng-controller='AuthController'>
+    <div class="login" ng-controller='LoginController'>
       <div ng-if="checkAuth() === false;">
         <ng-uber-auth>
       </div>
@@ -58,7 +65,8 @@
     <script src="app/map/map.js"></script>
     <script src="app/loader/loader.js"></script>
     <script src="app/roulette/roulette.js"></script>
-    <script src-"app/auth/login.js"></script>-->
+    <script src-"app/auth/login.js"></script>
+    <script src="app/auth/logout.js"></script>-->
     <script src="dist/app.min.js"></script>
   </body>
 </html>

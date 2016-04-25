@@ -1,6 +1,6 @@
-angular.module('pubroulette.auth', [])
+angular.module('pubroulette.login', [])
 
-.controller('AuthController', ['$scope', '$auth', function($scope, $auth) {
+.controller('LoginController', ['$scope', '$auth', function($scope, $auth) {
     
   $scope.checkAuth = function() {
     var result = false;
