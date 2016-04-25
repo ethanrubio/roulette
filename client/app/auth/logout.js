@@ -2,7 +2,9 @@ angular.module('pubroulette.logout', [])
 
 .controller('LogoutController', ['$scope', '$auth', '$location', function($scope, $auth, $location) {
     
-  $scope.checkAuth = function() {
+  var vm = this;
+    
+  vm.checkAuth = function() {
     var result = false;
     if ($auth.isAuthenticated()) {
       result = true;
@@ -10,7 +12,7 @@ angular.module('pubroulette.logout', [])
     return result;
   };
   
-  $scope.logout = function() {
+  vm.logout = function() {
     $auth.logout()
       .then(function() {
         $location.path('/');
@@ -21,6 +23,8 @@ angular.module('pubroulette.logout', [])
 .directive('ngLogout', function() {
   return {
     restrict: 'E',
-    template: "<md-button ng-if='checkAuth() === true;' ng-click='logout()'>Logout</md-button>"
+    template: "<md-button ng-if='vm.checkAuth() === true;' ng-click='vm.logout()'>Logout</md-button>",
+    controller: 'LogoutController',
+    controllerAs: 'vm'
   };
 })
