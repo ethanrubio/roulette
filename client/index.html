@@ -15,25 +15,28 @@
       <div class="header_section">
         <h1>Pub Roulette</h1>
       </div>
-      <div class="header_section" ng-controller="LogoutController">
-        <ng-logout>
+      <div class="header_section">
+        <ng-personal></ng-personal>
+        <div ng-controller="LogoutController">
+          <ng-logout></ng-logout>
+        </div>
       </div>
     </div>
 
     <div class="loader" ng-controller="LoaderController">
-      <ng-loading>
+      <ng-loading></ng-loading>
     </div>
 
     <div ng-controller="MapController">
-      <ng-map-builder>
+      <ng-map-builder></ng-map-builder>
     </div>
 
     <div class="roulette" ng-controller="RouletteController">
-      <ng-roulette>
+      <ng-roulette></ng-roulette>
     </div>
     
-    <div class="login" ng-controller='LoginController'>
-      <ng-uber-auth>
+    <div class="login">
+      <ng-uber-auth></ng-uber-auth>
     </div>
 
     <div ui-view></div>
@@ -50,6 +53,7 @@
     <script src="bower_components/angular-aria/angular-aria.js" ></script>
     <script src="bower_components/angular-material/angular-material.js" ></script>
     <script src="bower_components/satellizer/satellizer.min.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
     <!--<script src="app/app.js"></script>
     <script src="app/services/uberapifactory.js"></script>
     <script src="app/services/yelpapifactory.js"></script>
@@ -57,7 +61,7 @@
     <script src="app/map/map.js"></script>
     <script src="app/loader/loader.js"></script>
     <script src="app/roulette/roulette.js"></script>
-    <script src-"app/auth/login.js"></script>
+    <script src="app/auth/login.js"></script>
     <script src="app/auth/logout.js"></script>-->
     <script src="dist/app.min.js"></script>
   </body>
