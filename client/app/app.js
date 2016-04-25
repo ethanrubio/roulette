@@ -10,7 +10,8 @@ angular.module('pubroulette', [
   'pubroulette.login',
   'pubroulette.logout',
   'ui.router',
-  'satellizer'
+  'satellizer',
+  'angular-jwt'
 ])
 .config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
   
