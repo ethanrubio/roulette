@@ -89,7 +89,7 @@ module.exports = {
                   res.status(200).send({token: token});
                 });
               } else {
-                user.update({access_token: token}, function(err, raw) {
+                user.update({access_token: access_token}, function(err, raw) {
                   if (err) {
                     console.error(err);
                     res.status(400);
