@@ -20,7 +20,7 @@ angular.module('pubroulette', [
     name: 'uber',
     url: '/api/uber/token',
     redirectUri: window.location.origin,
-    authorizationEndpoint: 'http://localhost:3468/api/uber/authenticate',
+    authorizationEndpoint: 'https://gopubroulette.com/api/uber/authenticate',
     popupOptions: { width: 500, height: 560 }
   });
 
