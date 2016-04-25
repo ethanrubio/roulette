@@ -21,6 +21,6 @@ angular.module('pubroulette.logout', [])
 .directive('ngLogout', function() {
   return {
     restrict: 'E',
-    template: "<md-button ng-click='logout()'>Logout</md-button>"
+    template: "<md-button ng-if='checkAuth() === true;' ng-click='logout()'>Logout</md-button>"
   };
 })

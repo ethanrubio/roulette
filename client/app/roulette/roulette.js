@@ -51,6 +51,6 @@ angular.module('pubroulette.roulette', [])
 .directive('ngRoulette', function() {
   return {
     restrict: 'E',
-    template: "<md-button class='md-raised md-primary' style='margin: 5em; width: 15em; background-color: #01579b;' ng-click='roulette()'>Roulette</md-button>"
+    template: "<md-button ng-if='checkAuth() === true;' class='md-raised md-primary' style='margin: 5em; width: 15em; background-color: #01579b;' ng-click='roulette()'>Roulette</md-button>"
   };
 })

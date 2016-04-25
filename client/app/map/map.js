@@ -64,6 +64,6 @@ angular.module('pubroulette.mapMaker', [])
 .directive('ngMapBuilder', function() {
   return {
     restrict: 'E',
-    template: '<div style="width:70%  height: 100%"> <ng-map zoom="14" center="{{ coordinates.startLat + \',\' + coordinates.startLong }}" style="height:90%" > <directions travel-mode="DRIVING" origin=" {{ coordinates.startLat + \',\' + coordinates.startLong }}" destination="{{ coordinates.endLat + \',\' + coordinates.endLong }}"> </directions> </ng-map> </div>'
+    template: '<div ng-if="mapShow() === true;" style="width:70%  height: 100%"> <ng-map zoom="14" center="{{ coordinates.startLat + \',\' + coordinates.startLong }}" style="height:90%" > <directions travel-mode="DRIVING" origin=" {{ coordinates.startLat + \',\' + coordinates.startLong }}" destination="{{ coordinates.endLat + \',\' + coordinates.endLong }}"> </directions> </ng-map> </div>'
   }
 });

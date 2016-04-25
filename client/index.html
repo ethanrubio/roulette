@@ -16,9 +16,7 @@
         <h1>Pub Roulette</h1>
       </div>
       <div class="header_section" ng-controller="LogoutController">
-        <div ng-if="checkAuth() === true;">
-          <ng-logout>
-        </div>
+        <ng-logout>
       </div>
     </div>
 
@@ -27,21 +25,15 @@
     </div>
 
     <div ng-controller="MapController">
-      <div ng-if="mapShow() === true;">
-          <ng-map-builder>
-      </div>
+      <ng-map-builder>
     </div>
 
     <div class="roulette" ng-controller="RouletteController">
-      <div ng-if="checkAuth() === true;">
-        <ng-roulette>
-      </div>
+      <ng-roulette>
     </div>
     
     <div class="login" ng-controller='LoginController'>
-      <div ng-if="checkAuth() === false;">
-        <ng-uber-auth>
-      </div>
+      <ng-uber-auth>
     </div>
 
     <div ui-view></div>
