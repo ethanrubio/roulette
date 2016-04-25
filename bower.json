@@ -21,6 +21,7 @@
     "angular-ui-router": "^0.2.18",
     "angular-materialize": "^0.1.2",
     "ngmap": "^1.16.7",
-    "angular-material": "^1.0.5"
+    "angular-material": "^1.0.5",
+    "angular-jwt": "^0.0.9"
   }
 }
