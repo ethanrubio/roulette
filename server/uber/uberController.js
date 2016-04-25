@@ -10,7 +10,7 @@ var options = {
   client_id: keys.uber.client_id,
   client_secret: keys.uber.client_secret,
   server_token: keys.uber.server_token,
-  redirect_uri: 'http://localhost:3468',
+  redirect_uri: keys.uber.redirect_uri,
   name: 'PUB_ROULETTE'
 };
 
@@ -44,7 +44,7 @@ module.exports = {
 
   authenticate: function(req, res) {
     var scope = ['profile', 'request', 'history'];
-    res.redirect(uber.getAuthorizeUrl(scope, 'http://localhost:3468'));
+    res.redirect(uber.getAuthorizeUrl(scope, keys.uber.redirect_uri));
   },
 
   getToken: function(req, res) {
