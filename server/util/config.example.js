@@ -15,4 +15,8 @@ exports.yelp = {
 exports.db = {
   username: '',
   password: ''
-}
+};
+
+exports.jwt = {
+  secret: ''
+};
