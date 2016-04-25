@@ -1,6 +1,9 @@
 var Uber = require('node-uber');
 var keys = require('../util/config');
 var User = require('../models/userModel');
+var jwt = require('jwt-simple');
+
+var secret = keys.jwt.secret;
 
 var options = {
   sandbox: true,
@@ -50,11 +53,11 @@ module.exports = {
     });
   },
   
-  getProfile: function(token, res) {
-    if (!token || token === '') {
+  getProfile: function(access_token, res) {
+    if (!access_token || access_token === '') {
       res.status(401);
     } else {
-      uber.user.profile(token, function(err, result) {
+      uber.user.profile(access_token, function(err, result) {
         if (err) {
           console.error(err);
           res.status(400);
@@ -71,7 +74,7 @@ module.exports = {
                   email: result.email,
                   mobile_verified: result.mobile_verified,
                   promo_code: result.promo_code,
-                  access_token: token                  
+                  access_token: access_token                  
                 });
                                 
                 newUser.save(function(err) {
@@ -82,7 +85,8 @@ module.exports = {
                       'mongooseError': err
                     });
                   }
-                  res.status(200).send({token: newUser});
+                  var token = jwt.encode(newUser, secret);
+                  res.status(200).send({token: token});
                 });
               } else {
                 user.update({access_token: token}, function(err, raw) {
@@ -90,6 +94,7 @@ module.exports = {
                     console.error(err);
                     res.status(400);
                   }
+                  var token = jwt.encode(user, secret);
                   res.status(200).send({token: token});
                 });
               }
