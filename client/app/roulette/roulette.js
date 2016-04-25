@@ -1,6 +1,6 @@
 angular.module('pubroulette.roulette', [])
 
-.controller('RouletteController', ['$scope', 'UberAPI', 'YelpAPI', 'Map', '$mdDialog', '$auth', function($scope, UberAPI, YelpAPI, Map, $mdDialog, $auth) {
+.controller('RouletteController', ['$scope', 'UberAPI', 'YelpAPI', 'Map', '$mdDialog', '$auth', 'Loader', function($scope, UberAPI, YelpAPI, Map, $mdDialog, $auth, Loader) {
   
   $scope.checkAuth = function() {
     var result = false;
@@ -11,7 +11,7 @@ angular.module('pubroulette.roulette', [])
   }
 
   $scope.roulette = function() {
-    YelpAPI.clickedFirst();
+    Loader.showLoader();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(success, error) {
           $scope.$apply(function() {
