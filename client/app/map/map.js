@@ -1,5 +1,5 @@
 angular.module('pubroulette.mapMaker', [])
-.controller('MapController', ['$scope', '$log', '$timeout', 'Map', 'UberAPI', '$mdDialog', function($scope, $log, $timeout, Map, UberAPI, $mdDialog) {
+.controller('MapController', ['$scope', '$log', '$timeout', 'Map', 'UberAPI', '$mdDialog', 'Loader', function($scope, $log, $timeout, Map, UberAPI, $mdDialog, Loader) {
 
   $scope.coordinates;
   $scope.uberData;
@@ -11,7 +11,7 @@ angular.module('pubroulette.mapMaker', [])
     }
     return result;
   };
-
+  
   $scope.$watch(function() { return Map.coordinates; }, function(newValue, oldValue) {
       if (newValue !== oldValue) {
         $scope.coordinates = newValue;
@@ -26,6 +26,7 @@ angular.module('pubroulette.mapMaker', [])
     }, true);
 
   $scope.showConfirm = function(ev) {
+    Loader.showLoader();
     var confirm = $mdDialog.confirm()
           .title('You\'re about to go to ' + $scope.coordinates.name +  '.')
           .textContent('It\'ll cost about ' + $scope.uberData.data.prices[0].estimate + '.')

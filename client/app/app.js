@@ -6,6 +6,7 @@ angular.module('pubroulette', [
   'pubroulette.map',
   'pubroulette.mapMaker',
   'pubroulette.loader',
+  'pubroulette.loaderfactory',
   'pubroulette.roulette',
   'pubroulette.login',
   'pubroulette.logout',
