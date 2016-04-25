@@ -4,7 +4,6 @@ A simple app to take you to a random bar near you using Uber.
 
 ## Future Features/Refactors
 
-* Add a database to store uber user tokens.
 * Refactor Angular controllers to use vm instead of $scope.
 
 ## Getting started
