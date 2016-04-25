@@ -2,7 +2,8 @@
 exports.uber = {
   client_id: '',
   client_secret: '',
-  server_token: ''
+  server_token: '',
+  redirect_uri: ''
 };
 
 exports.yelp = {
